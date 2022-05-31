@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="p-3 mb-2 bg-dark text-white ">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">TodoList</h1>
+    <p class="lead">Live productively with todolist</p>
+  </div>
+</div>
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'create' %}" class="btn btn-secondary mb-3  active" role="button" aria-pressed="true">Create New</a>
+    {% for item in object_list %}
+    <div class="alert alert-{{ item.priority }}" role="alert">
+        <p>{{ item.title }} Deadline:{{ item.duedate | date:"o/n/j" }}</p>
+        <a href="{% url 'update' item.pk %}" class="btn btn-info  active" role="button" aria-pressed="true">Edit</a>
+        <a href="{% url 'delete' item.pk %}" class="btn btn-success  active" role="button" aria-pressed="true">Delete</a>
+        <a href="{% url 'detail' item.pk %}" class="btn btn-primary  active" role="button" aria-pressed="true">Detail</a>
+    </div>
+
+    {% endfor %}
+
+</div>
+{% endblock content %}
+</div>
